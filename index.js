@@ -26,7 +26,8 @@ app.get('/google/callback',
     passport.authenticate('google',{
         successRedirect: '/protected',
         failureRedirect: '/auth/failure',
-    })
+    }),
+    
 )
 
 app.get('/auth/google/failure', (req, res) => {
@@ -37,16 +38,16 @@ app.get('/protected',isLoggedIn, (req,res) =>{
     res.send(`Hello ${req.user.displayName}`);
 })
 
-// app.get('/logout', (req, res)=> {
-//     req.logout(function(err){
-//         if (err) {return next(err);}
+app.get('/logout', (req, res)=> {
+    req.logout(function(err){
+        if (err) {return next(err);}
       
-//     });
-  
+    });
+      
 
    
 
-// })
+})
 
 
 app.listen(5000, () => 
